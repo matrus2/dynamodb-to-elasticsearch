@@ -28,9 +28,9 @@ $ npm install dynamo-to-elasticsearch
 | region | string | dynamodb table region
 | es_endpoint | string | elastic-search endpoint
 | es_data | object |
-| es_data.id | object | The name of `primaryKey` field for DynamoDB table. It should be unique identifier for documents. By default it is set to `sortKey`. 
-| es_data.type | object | Name of class of objects, which document represents. By default it is set to `datatype`.
-| es_data.indiceName | object | Index name of elastic-search on which you can perform query.
+| es_data.id | string | The name of `primaryKey` field for DynamoDB table. It should be unique identifier for documents. By default it is set to `sortKey`. 
+| es_data.type | string | Name of class of objects, which document represents. By default it is set to `datatype`.
+| es_data.indiceName | string | Index name of elastic-search on which you can perform query.
 
 ### Example
 
@@ -40,11 +40,11 @@ const d2es = require('dynamodb-to-elasticsearch');
 const table = 'table',
 	region = 'region',
 	es_endpoint = 'es_endpoint_value',
-    es_data = { id: 'sortKey', type: 'data', indiceName: 'candidates' }};
+	es_data = { id: 'sortKey', type: 'data', indiceName: 'candidates' }};
 
 exports.handler = function(event, context, callback) {
-	d2es.exec(table, region, es_endpoint, es_data, (err, success) => {		
-    if (err) {
+	d2es.exec(table, region, es_endpoint, es_data, (err, success) => {
+	    if (err) {
 			callback(err, null);
 		} else {
 			callback(null, success);
